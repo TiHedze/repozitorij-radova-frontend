@@ -1,0 +1,15 @@
+<mat-card class="half-width">
+    <mat-card-content class="container">
+        <form [formGroup]="createAuthorForm" (ngSubmit)="onSubmit()" class="column">
+            <mat-form-field>
+                <mat-label>Ime</mat-label>
+                <input matInput [formControl]="firstNameControl">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Prezime</mat-label>
+                <input matInput [formControl]="lastNameControl">
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="primary">Kreiraj</button>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.half-width {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    justify-content: center;
+}

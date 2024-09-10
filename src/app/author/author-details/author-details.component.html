@@ -1,0 +1,24 @@
+<mat-card class="half-width">
+    <mat-card-header>
+        {{author!.firstName}} {{author!.lastName}}
+    </mat-card-header>
+    <mat-card-content class="container">
+        <button mat-raised-button color="warn" [disabled]="!isLoggedIn">Obriši</button>
+        <a mat-button [disabled]="!isLoggedIn" [routerLink] = "['author','edit', author!.id]">Uredi</a>
+        <table mat-table [dataSource]="articles" class="mat-elevation-z8">
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef> Naslov</th>
+                <td mat-cell *matCellDef="let element"> {{element.title}}</td>
+            </ng-container>
+            <ng-container matColumnDef="details">
+                <th mat-header-cell *matHeaderCellDef> Detalji članka</th>
+                <td mat-cell *matCellDef="let element">
+                    <a mat-button [routerLink]="['/articles', element.id]" >Detalji</a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedAuthorColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedAuthorColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>
