@@ -1,6 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, startWith, debounceTime, switchMap, take, takeUntil, Subject } from 'rxjs';
 import Article from 'src/app/entities/article.entity';
@@ -19,7 +19,7 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
   public summaryControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
   public titleControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
   public urlControl = new FormControl('', [Validators.required, Validators.minLength(1)])
-  public editArticleForm = new FormGroup({
+  public editArticleForm = this.formBuilder.group({
     selectedAuthors: new FormControl([], [Validators.minLength(1)]),
     title: this.titleControl,
     summary: this.summaryControl,
@@ -34,7 +34,8 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
     private articleService: ArticleService, 
     private authorService: AuthorService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder) { }
   
   
 
@@ -88,7 +89,7 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
 
     this.articleService.update(this.article!)
       .pipe(takeUntil(this.unsubscriber$))
-      .subscribe(value => this.router.navigate(['article', value]));
+      .subscribe(value => this.router.navigate(['article', value.id]));
   }
 
   public removeAuthor(event: any) {

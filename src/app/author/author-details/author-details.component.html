@@ -3,7 +3,7 @@
         {{author!.firstName}} {{author!.lastName}}
     </mat-card-header>
     <mat-card-content class="container">
-        <button mat-raised-button color="warn" [disabled]="!isLoggedIn">Obriši</button>
+        <button mat-raised-button color="warn" [disabled]="!isLoggedIn" (onClick)="deleteAuthor()">Obriši</button>
         <a mat-button [disabled]="!isLoggedIn" [routerLink] = "['author','edit', author!.id]">Uredi</a>
         <table mat-table [dataSource]="articles" class="mat-elevation-z8">
             <ng-container matColumnDef="title">
@@ -17,8 +17,8 @@
                 </td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedAuthorColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedAuthorColumns;"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </mat-card-content>
 </mat-card>

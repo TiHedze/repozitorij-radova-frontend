@@ -1,1 +1,29 @@
-<p>publication-details works!</p>
+<mat-card class="half-width">
+    <mat-card-header>
+        {{publication!.title}}
+    </mat-card-header>
+    <mat-card-content class="container">
+        <button mat-raised-button color="warn" [disabled]="!isLoggedIn" (click)="deletePublication()">Obriši</button>
+        <a mat-button [disabled]="disable()" [routerLink] = "['publications','edit', publication!.id]">Uredi</a>
+        <p style="padding-top: 20px">Izvor: {{publication!.source}}</p>
+        <table mat-table [dataSource]="volumes" class="mat-elevation-z8">
+            <ng-container matColumnDef="volume">
+                <th mat-header-cell *matHeaderCellDef> Svezak</th>
+                <td mat-cell *matCellDef="let element"> {{element.volume}}</td>
+            </ng-container>
+            <ng-container matColumnDef="issue">
+                <th mat-header-cell *matHeaderCellDef> Broj</th>
+                <td mat-cell *matCellDef="let element"> {{element.issue}}</td>
+            </ng-container>
+            <ng-container matColumnDef="details">
+                <th mat-header-cell *matHeaderCellDef> Detalji sveska</th>
+                <td mat-cell *matCellDef="let element">
+                    <a mat-button [routerLink]="['/articles', element.id]" >Detalji</a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>

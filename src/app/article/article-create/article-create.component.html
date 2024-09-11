@@ -18,16 +18,15 @@
                 <input type="text" matInput [matAutocomplete]="auto" [formControl]="autocompleteControl">
                 <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="onOptionSelected($event)">
                     <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
-                        {{option.firstName}}
+                        {{option.firstName}} {{option.lastName}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
-
             <div *ngIf="createArticleForm.get('selectedAuthors')?.value.length > 0">
-                <mat-chip-list>
-                  <mat-chip *ngFor="let author of createArticleForm.get('selectedAuthors')!.value" [removable]="true" (removed)="removeAuthor(author)">
-                    {{ author.firstName + ' ' + author.lastName }}
+                <mat-chip-list class="mat-chip-list-stacked">
+                  <mat-chip *ngFor="let author of createArticleForm.get('selectedAuthors')!.value" [removable]="true" (removed)="removeAuthor(author)" >
                     <mat-icon matChipRemove>cancel</mat-icon>
+                    <span class="elipsis">{{ author.firstName + ' ' + author.lastName }} </span>
                   </mat-chip>
                 </mat-chip-list>
               </div>

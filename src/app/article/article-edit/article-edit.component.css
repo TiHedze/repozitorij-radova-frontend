@@ -1,7 +1,9 @@
 .container {
-    display: flex;
+    margin-top: 20px;
+    overflow: hidden;
+    max-width: 50%;
+    width: 100%;
 }
-
 .column {
     display: flex;
     flex-direction: column;

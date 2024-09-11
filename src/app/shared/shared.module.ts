@@ -10,6 +10,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon'
 import { MatChipsModule } from '@angular/material/chips'
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -26,7 +27,8 @@ import { MatChipsModule } from '@angular/material/chips'
     MatAutocompleteModule,
     MatOptionModule,
     MatIconModule,
-    MatChipsModule
+    MatChipsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { MatChipsModule } from '@angular/material/chips'
     MatAutocompleteModule,
     MatOptionModule,
     MatIconModule,
-    MatChipsModule
+    MatChipsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

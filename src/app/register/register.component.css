@@ -1,0 +1,31 @@
+.container {
+    max-width: 50%;
+    width: 100%;
+    margin-top: 5%;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.half-width {
+    display: flex;
+    width: 50%;
+    max-width: 50%;
+    margin: auto;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+
+}
+
+.elipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: fit-content;
+    max-width: 40%;
+}

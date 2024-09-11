@@ -14,6 +14,7 @@
         <p>Izdanje: {{volume}}</p>
         <a mat-button [routerLink]="['/volumes', volumeId]">Detalji</a>
         <br />
+        <a [href]="article!.url" target="_blank" rel="noopener noreferrer">Otvori pdf</a>
         <table mat-table [dataSource]="authors" class="mat-elevation-z8">
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef> Ime i prezime</th>

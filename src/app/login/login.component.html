@@ -1,0 +1,18 @@
+<mat-card class="half-width">
+    <mat-card-header>
+        <span>Prijava</span>
+    </mat-card-header>
+    <mat-card-content class="container">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="column">
+            <mat-form-field>
+                <mat-label>Korisničko ime</mat-label>
+                <input matInput [formControl]="usernameControl">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Lozinka</mat-label>
+                <textarea matInput [formControl]="passwordControl"></textarea>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="primary">Prijava</button>
+        </form>
+    </mat-card-content>
+</mat-card>

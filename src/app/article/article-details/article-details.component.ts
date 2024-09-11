@@ -35,7 +35,7 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
-    this.isLoggedIn = this.authService.loggedIn;
+    this.isLoggedIn = this.authService.loggedIn();
 
     this.articleService.getById(id)
       .pipe(takeUntil(this.unsubscriber$))

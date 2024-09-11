@@ -12,7 +12,7 @@ import { SearchArticlesRequest } from 'src/app/services/requests/article/search-
 })
 export class ArticleListComponent implements OnInit, OnDestroy {
   public articles: Article[] = [];
-  public displayedColumns: string[] = ['position', 'title', 'authors', 'details'];
+  public displayedColumns: string[] = ['position', 'title', 'authorNames', 'details'];
   private unsubscriber$: Subject<boolean> = new Subject();
 
   constructor(
@@ -30,8 +30,9 @@ export class ArticleListComponent implements OnInit, OnDestroy {
       const query = {
         authorName: queryParamMap.get('authorName'),
         publicationName: queryParamMap.get('publicationName'),
-        summaryText: queryParamMap.get('summary'),
-        volumeName: queryParamMap.get('volumeName')
+        summaryText: queryParamMap.get('summaryText'),
+        volumeName: queryParamMap.get('volumeName'),
+        articleName: queryParamMap.get('articleName')
       } as SearchArticlesRequest;
 
       this.articleService.search(query)

@@ -1,1 +1,32 @@
-<p>volume-create works!</p>
+<mat-card class="half-width">
+    <mat-card-content class="container">
+        <form [formGroup]="createVolumeForm" (ngSubmit)="onSubmit()" class="column">
+            <mat-form-field>
+                <mat-label>Svezak</mat-label>
+                <input matInput [formControl]="volumeControl">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Izdanje</mat-label>
+                <textarea matInput [formControl]="issueControl"></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <input type="text" matInput [matAutocomplete]="auto" [formControl]="autocompleteControl">
+                <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="onOptionSelected($event)">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+                        <span> {{option.title}}</span>
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <div *ngIf="createVolumeForm.get('selectedArticles')?.value.length > 0">
+                <mat-chip-list class="mat-chip-list-stacked">
+                  <mat-chip *ngFor="let article of createVolumeForm.get('selectedArticles')!.value" [removable]="true" (removed)="removeArticle(article)" >
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                    <span class="elipsis">{{ article.title }} </span>
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+              <button type="submit" mat-raised-button color="primary">Kreiraj</button>
+        </form>
+    </mat-card-content>
+</mat-card>

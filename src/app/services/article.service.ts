@@ -4,8 +4,9 @@ import { CreateArticleRequest } from './requests/article/create-article.request'
 import Article from '../entities/article.entity';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { SearchArticlesRequest } from './requests/article/search-articles.request';
+import { IdResponse } from './responses/id.response';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class ArticleService {
   constructor(private httpClient: HttpClient, private authService: AuthService) {
   }
 
-  public create(request: CreateArticleRequest): Observable<string> {
-    return this.httpClient.post<string>(
+  public create(request: CreateArticleRequest): Observable<IdResponse> {
+    return this.httpClient.post<IdResponse>(
       this.url,
       request,
       {
@@ -35,35 +36,39 @@ export class ArticleService {
   }
 
   public delete(id: string) {
-    return this.httpClient.delete(this.url + `/${id}`);
+    return this.httpClient.delete(this.url + `/${id}`, {headers: this.authService.getAuthorizationHeader()});
   }
 
   public search(request: SearchArticlesRequest): Observable<Article[]> {
-    let params: HttpParams | undefined = new HttpParams()
-    if (request.authorName !== undefined) {
-      params.set('authorName', request.authorName);
+    let params = '?'
+    if (request.authorName) {
+      params += `authorName=${request.authorName}&`
     }
 
-    if (request.publicationName !== undefined) {
-      params.set('publicationName', request.publicationName);
+    if (request.publicationName) {
+      params += `publicationName=${request.publicationName}&`;
     }
 
-    if (request.summaryText !== undefined) {
-      params.set('summaryText', request.summaryText);
+    if (request.summaryText) {
+      params += `summaryText=${request.summaryText}&`;
     }
 
-    if (request.volumeName !== undefined) {
-      params.set('volumeName', request.volumeName);
+    if (request.volumeName) {
+      params += `volumeName=${request.volumeName}&`;
     }
 
-    if (params.keys().length === 0) {
-      params = undefined;
+    if (params === '?') {
+      params = '';
     }
 
-    return this.httpClient.get<Article[]>(this.url, { params: params });
+    return this.httpClient.get<Article[]>(this.url + `/query/${params}`);
   }
 
-  public update(article: Article): Observable<string> {
-    return this.httpClient.put<string>(this.url + `/${article.id}`, article);
+  public update(article: Article): Observable<IdResponse> {
+    return this.httpClient.put<IdResponse>(this.url + `/${article.id}`, article, {headers: this.authService.getAuthorizationHeader()});
+  }
+
+  public getArticlesByQuery(query: string) {
+    return this.httpClient.get<Article[]>(this.url + `/query/articleName=${query}`,);
   }
 }

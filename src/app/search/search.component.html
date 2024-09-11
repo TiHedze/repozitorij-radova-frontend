@@ -1,0 +1,32 @@
+<mat-card class="half-width">
+    <mat-card-header class="container">
+        <span>Pretraga članaka</span>
+    </mat-card-header>
+    <mat-card-content class="container">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="column">
+            <mat-form-field>
+                <mat-label>Ime i prezime autora</mat-label>
+                <input matInput [formControl]="authorNameControl">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Naziv članka</mat-label>
+                <input matInput [formControl]="articleNameControl">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Naziv časopisa</mat-label>
+                <input matInput [formControl]="publicationNameControl">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Naziv sveska</mat-label>
+                <input matInput [formControl]="volumeNameControl">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Tekst kratkog sadržaja</mat-label>
+                <textarea matInput [formControl]="summaryControl"></textarea>
+            </mat-form-field>
+            <div style="width: 50%;">
+                <button mat-raised-button type="submit" >Pretraži</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,6 +1,8 @@
 import Volume from "./volume.entity";
 
 export default interface Publication {
+    id: string,
     title: string,
-    volumes: Volume[]
+    volumes: Volume[],
+    source: string
 }

@@ -4,11 +4,12 @@ import { NgModule } from "@angular/core";
 import { AuthorCreateComponent } from "./author-create/author-create.component";
 import { AuthorDetailsComponent } from "./author-details/author-details.component";
 import { AuthorEditComponent } from "./author-edit/author-edit.component";
+import { AuthGuard } from "../services/guards/auth.guard";
 
 const routes: Routes = [
     { path: '', component: AuthorListComponent },
-    { path: 'create', component: AuthorCreateComponent },
-    { path: 'edit/:id', component: AuthorEditComponent },
+    { path: 'create', component: AuthorCreateComponent, canActivate: [AuthGuard] },
+    { path: 'edit/:id', component: AuthorEditComponent, canActivate: [AuthGuard] },
     { path: ':id', component: AuthorDetailsComponent }
   ];
   

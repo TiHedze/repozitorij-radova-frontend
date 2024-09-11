@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import Author from '../entities/author.entity';
 import { CreateAuthorRequest } from './requests/author/create-author.request';
 import { AuthService } from './auth.service';
+import { IdResponse } from './responses/id.response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class AuthorService {
   private url: string = `${environment.url}/v1/authors`
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
-  public create(request: CreateAuthorRequest): Observable<string> {
-    return this.httpClient.post<string>(
+  public create(request: CreateAuthorRequest): Observable<IdResponse> {
+    return this.httpClient.post<IdResponse>(
       this.url, 
       request, 
       { 
@@ -25,7 +26,15 @@ export class AuthorService {
    }
 
 
-  public update() { }
+  public update(author: Author): Observable<IdResponse> { 
+    return this.httpClient.put<IdResponse>(
+      this.url + `/${author.id}`, 
+      author,
+      {
+        headers: this.authService.getAuthorizationHeader()
+      }
+    );
+  }
   public delete(id: string): Observable<unknown> {
     return this.httpClient.delete(
       this.url + `/${id}`, 
@@ -45,7 +54,7 @@ export class AuthorService {
    
   public getAuthorsByQuery(query: string): Observable<Author[]> {
     return of( [
-      {firstName: 'asd', lastName:'asd', id: '1'} as Author,
+      {firstName: 'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdadasdasdasds', lastName:'asd', id: '1'} as Author,
       {firstName: 'sdf', lastName:'sdf', id: '2'} as Author,
       {firstName: 'dfg', lastName:'dfg', id: '3'} as Author,
     ].filter(author => `${author.firstName} ${author.lastName}`.toLowerCase().includes(query)));

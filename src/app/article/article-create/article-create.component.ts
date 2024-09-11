@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
 import { MatCard } from '@angular/material/card';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthorService } from 'src/app/services/author.service';
 import { debounceTime, Observable, of, startWith, switchMap, take } from 'rxjs';
 import Author from 'src/app/entities/author.entity';
@@ -18,7 +18,7 @@ export class ArticleCreateComponent implements OnInit {
   public summaryControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
   public titleControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
   public urlControl = new FormControl('', [Validators.required, Validators.minLength(1)])
-  public createArticleForm = new FormGroup({
+  public createArticleForm = this.formBuilder.group({
     selectedAuthors: new FormControl([], [Validators.minLength(1)]),
     title: this.titleControl,
     summary: this.summaryControl,
@@ -31,7 +31,8 @@ export class ArticleCreateComponent implements OnInit {
   constructor(
     private articleService: ArticleService, 
     private authorService: AuthorService,
-    private router: Router) { }
+    private router: Router,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.filteredOptions = this.autocompleteControl.valueChanges.pipe(
@@ -67,7 +68,7 @@ export class ArticleCreateComponent implements OnInit {
       url 
     }).pipe(
       take(1)
-    ).subscribe(value => this.router.navigate(['article', value]));
+    ).subscribe(value => this.router.navigate(['article', value.id]));
 
 
   }

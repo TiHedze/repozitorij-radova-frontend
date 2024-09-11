@@ -4,12 +4,13 @@ import { PublicationCreateComponent } from "./publication-create/publication-cre
 import { PublicationDetailsComponent } from "./publication-details/publication-details.component";
 import { PublicationEditComponent } from "./publication-edit/publication-edit.component";
 import { PublicationListComponent } from "./publication-list/publication-list.component";
+import { AuthGuard } from "../services/guards/auth.guard";
 
 const routes: Routes = [
     { path: '', component: PublicationListComponent },
-    { path: '/create', component: PublicationCreateComponent },
-    { path: '/edit/:id', component: PublicationEditComponent },
-    { path: '/:id', component: PublicationDetailsComponent },
+    { path: 'create', component: PublicationCreateComponent, canActivate: [AuthGuard] },
+    { path: 'edit/:id', component: PublicationEditComponent, canActivate: [AuthGuard] },
+    { path: ':id', component: PublicationDetailsComponent },
 ];
 
 @NgModule({
