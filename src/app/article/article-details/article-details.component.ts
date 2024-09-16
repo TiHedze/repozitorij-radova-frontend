@@ -42,8 +42,10 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
       .subscribe(article => {
         this.article = article;
         this.publication = article.publicationName;
+        this.publicationId = article.publicationId;
         this.volume = article.volumeName;
-        this.authors = article.authors
+        this.volumeId = article.volumeId;
+        this.authors = article.authors;
       });
   }
 

@@ -1,7 +1,7 @@
-<mat-card>
-    <mat-card-content>
-        <a mat-button routerLink="/publications/create">Nova publikacija</a>
-        <table mat-table [dataSource]="publications" class="mat-elevation-z8">
+<mat-card class="half-width">
+    <mat-card-content class="container">
+        <a mat-button routerLink="/publications/create">Novi časopis</a>
+        <table mat-table [dataSource]="publications" class="mat-elevation-z8 mytab">
             <ng-container matColumnDef="position">
                 <th mat-header-cell *matHeaderCellDef> # </th>
                 <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
@@ -20,7 +20,7 @@
             <ng-container matColumnDef="details">
                 <th mat-header-cell *matHeaderCellDef> Detalji </th>
                 <td mat-cell *matCellDef="let element"> <a mat-raised-button color="primary"
-                        [routerLink]="['/publications', element.id]">Detalji</a> </td>
+                        [routerLink]="['/publications', element?.id]">Detalji</a> </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

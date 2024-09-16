@@ -1,6 +1,7 @@
-<mat-card>
-    <mat-card-content>
-        <table mat-table [dataSource]="authors" class="mat-elevation-z8">
+<mat-card class="half-width">
+    <mat-card-content class="container">
+        <a mat-button routerLink="/authors/create">Novi autor</a>
+        <table mat-table [dataSource]="authors" class="mat-elevation-z8 mytab">
             <ng-container matColumnDef="position">
                 <th mat-header-cell *matHeaderCellDef> # </th>
                 <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>

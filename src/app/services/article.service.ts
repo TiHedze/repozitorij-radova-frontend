@@ -57,6 +57,10 @@ export class ArticleService {
       params += `volumeName=${request.volumeName}&`;
     }
 
+    if (request.year) {
+      params += `year=${request.year}&`
+    }
+
     if (params === '?') {
       params = '';
     }
@@ -69,6 +73,6 @@ export class ArticleService {
   }
 
   public getArticlesByQuery(query: string) {
-    return this.httpClient.get<Article[]>(this.url + `/query/articleName=${query}`,);
+    return this.httpClient.get<Article[]>(this.url + `/query?articleName=${query}`,);
   }
 }

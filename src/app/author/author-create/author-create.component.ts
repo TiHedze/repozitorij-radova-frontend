@@ -38,6 +38,6 @@ export class AuthorCreateComponent implements OnInit, OnDestroy {
       firstName: this.firstNameControl.value!, 
       lastName: this.lastNameControl.value! } as CreateAuthorRequest)
       .pipe(takeUntil(this.unsubscriber$))
-      .subscribe(value => this.router.navigate(['author', value.id]));
+      .subscribe(value => this.router.navigate(['authors', value.id]));
   }
 }

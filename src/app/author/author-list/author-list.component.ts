@@ -23,6 +23,7 @@ export class AuthorListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    this.unsubscriber$.next(false);
+    this.unsubscriber$.complete();
   }
 }

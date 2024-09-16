@@ -13,6 +13,10 @@
                 <mat-label>URL na kojem se nalazi rad</mat-label>
                 <input matInput type="text" [formControl]="urlControl">
             </mat-form-field>
+            <mat-form-field>
+                <mat-label>Godina izdanja članka</mat-label>
+                <input matInput type="text" [formControl]="yearControl">
+            </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <input type="text" matInput [matAutocomplete]="auto" [formControl]="autocompleteControl">

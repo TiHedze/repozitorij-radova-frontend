@@ -48,7 +48,7 @@ export class VolumeDetailsComponent implements OnInit, OnDestroy {
   }
 
   getAuthorNames(article: Article): string {
-    return article.authors.map(author => author.id).join();
+    return article.authors.map(author => `${author.firstName} ${author.lastName}`).join();
   }
 
   disable(): boolean {

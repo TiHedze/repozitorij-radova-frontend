@@ -44,7 +44,7 @@ export class AuthorDetailsComponent implements OnInit, OnDestroy {
   }
 
   public deleteAuthor() {
-    this.authorService.delete(this.author!.id)
+    return this.authorService.delete(this.author!.id)
       .pipe(takeUntil(this.unsubscriber$))
       .subscribe(value => this.router.navigate(['/authors']));
   }

@@ -1,0 +1,34 @@
+.container {
+    margin-top: 20px;
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.half-width {
+    display: flex;
+    max-width: 50%;
+    margin: auto;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.elipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: fit-content;
+    max-width: 40%;
+}
+
+.mytab {
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    margin: auto;
+}

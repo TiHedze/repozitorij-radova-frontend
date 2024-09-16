@@ -9,5 +9,6 @@ export default interface Article {
     publicationName: string;
     publicationId : string,
     volumeName: string,
-    volumeId: string
+    volumeId: string,
+    year: number
 }

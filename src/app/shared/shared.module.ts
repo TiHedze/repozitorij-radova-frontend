@@ -11,6 +11,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon'
 import { MatChipsModule } from '@angular/material/chips'
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -28,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatOptionModule,
     MatIconModule,
     MatChipsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatOptionModule,
     MatIconModule,
     MatChipsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class SharedModule { }

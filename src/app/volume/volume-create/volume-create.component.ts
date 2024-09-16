@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, startWith, debounceTime, switchMap, take } from 'rxjs';
 import Article from 'src/app/entities/article.entity';
 import Author from 'src/app/entities/author.entity';
@@ -30,6 +30,7 @@ export class VolumeCreateComponent implements OnInit {
   constructor(
     private articleService: ArticleService, 
     private volumeService: VolumeService,
+    private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder) { }
 
@@ -62,7 +63,8 @@ export class VolumeCreateComponent implements OnInit {
     this.volumeService.create({ 
       volume,
       issue,
-      articleIds: selectedArticles.map(article => article.id)
+      articleIds: selectedArticles.map(article => article.id),
+      publicationId: this.route.snapshot.paramMap.get('publicationId')!
     }).pipe(
       take(1)
     ).subscribe(value => this.router.navigate(['/volumes', value.id]));

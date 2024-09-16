@@ -3,5 +3,6 @@ export interface SearchArticlesRequest {
     summaryText?: string | undefined,
     volumeName?: string | undefined,
     authorName?: string | undefined,
-    articleName: string | undefined
+    articleName?: string | undefined,
+    year?: number | undefined
 }

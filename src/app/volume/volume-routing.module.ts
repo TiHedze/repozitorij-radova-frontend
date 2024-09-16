@@ -6,9 +6,9 @@ import { VolumeEditComponent } from "./volume-edit/volume-edit.component";
 import { AuthGuard } from "../services/guards/auth.guard";
 
 const routes: Routes = [
-    { path: '/create', component: VolumeCreateComponent, canActivate: [AuthGuard] },
-    { path: '/edit', component: VolumeEditComponent, canActivate: [AuthGuard] },
-    { path: '/:id', component: VolumeDetailsComponent }
+    { path: 'create', component: VolumeCreateComponent, canActivate: [AuthGuard] },
+    { path: 'edit', component: VolumeEditComponent, canActivate: [AuthGuard] },
+    { path: ':id', component: VolumeDetailsComponent }
 ];
 
 @NgModule({

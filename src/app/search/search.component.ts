@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit {
   public authorNameControl = new FormControl('');
   public articleNameControl = new FormControl('');
   public volumeNameControl = new FormControl('');
+  public yearControl = new FormControl('')
   public searchForm = this.formBuilder.group({
     publicationName: this.publicationNameControl,
     summaryText: this.summaryControl,
@@ -35,6 +36,7 @@ export class SearchComponent implements OnInit {
     const volumeName = this.volumeNameControl.value!;
     const authorName = this.authorNameControl.value!;
     const articleName = this.articleNameControl.value!;
+    const year = this.yearControl.value! as number;
 
     console.log({publicationName, summaryText, volumeName, authorName, articleName})
     this.router.navigate(
@@ -45,7 +47,8 @@ export class SearchComponent implements OnInit {
           summaryText,
           volumeName,
           authorName,
-          articleName
+          articleName,
+          year
         } as Params
       }
     );

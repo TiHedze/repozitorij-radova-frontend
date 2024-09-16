@@ -17,12 +17,15 @@ export class ArticleCreateComponent implements OnInit {
   public autocompleteControl = new FormControl('');
   public summaryControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
   public titleControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
-  public urlControl = new FormControl('', [Validators.required, Validators.minLength(1)])
+  public urlControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
+  public yearControl = new FormControl(undefined, [Validators.required])
+
   public createArticleForm = this.formBuilder.group({
     selectedAuthors: new FormControl([], [Validators.minLength(1)]),
     title: this.titleControl,
     summary: this.summaryControl,
-    url: this.urlControl
+    url: this.urlControl,
+    year: this.yearControl
   });
   public filteredOptions?: Observable<Author[]> = undefined;
 
@@ -60,12 +63,14 @@ export class ArticleCreateComponent implements OnInit {
     const title = this.createArticleForm.get('title')!.value as string;
     const summary = this.createArticleForm.get('summary')!.value as string;
     const url = this.createArticleForm.get('url')!.value as string;
+    const year = this.createArticleForm.get('year')!.value as number
 
     this.articleService.create({ 
       title, 
       summary, 
       authorIds: selectedAuthors.map(author => author.id), 
-      url 
+      url,
+      year
     }).pipe(
       take(1)
     ).subscribe(value => this.router.navigate(['article', value.id]));

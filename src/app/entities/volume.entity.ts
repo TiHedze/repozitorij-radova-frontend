@@ -4,5 +4,6 @@ export default interface Volume {
     id: string,
     volume: string,
     issue: string,
-    articles: Article[]
+    articles: Article[],
+    publicationId: string
 }

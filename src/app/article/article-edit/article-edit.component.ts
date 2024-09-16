@@ -18,7 +18,8 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
   public autocompleteControl = new FormControl('');
   public summaryControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
   public titleControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
-  public urlControl = new FormControl('', [Validators.required, Validators.minLength(1)])
+  public urlControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
+  public yearControl = new FormControl(undefined, [Validators.required, Validators.pattern('\d+')])
   public editArticleForm = this.formBuilder.group({
     selectedAuthors: new FormControl([], [Validators.minLength(1)]),
     title: this.titleControl,
@@ -54,6 +55,7 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
         this.urlControl.setValue(article.url);
         this.titleControl.setValue(article.title);
         this.editArticleForm.get('selectedAuthors')!.setValue(article.authors);
+        this.yearControl.setValue(article.year)
         this.article = article;
       });
   }

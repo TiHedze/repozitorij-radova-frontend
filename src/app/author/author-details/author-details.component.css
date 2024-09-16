@@ -1,7 +1,7 @@
 .container {
     margin-top: 20px;
     overflow: hidden;
-    max-width: 50%;
+    max-width: 75%;
     width: 100%;
 }
 
@@ -15,4 +15,12 @@
     width: 50%;
     margin: auto;
     justify-content: center;
+    flex-direction: column;
+}
+
+.mytab {
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    margin: auto;
 }

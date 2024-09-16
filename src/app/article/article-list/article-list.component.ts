@@ -27,12 +27,14 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.route.snapshot.queryParamMap.keys.length > 0) {
       const queryParamMap = this.route.snapshot.queryParamMap;
+      const year = queryParamMap.get('year') == null ? -1 : +queryParamMap.get('year')!
       const query = {
         authorName: queryParamMap.get('authorName'),
         publicationName: queryParamMap.get('publicationName'),
         summaryText: queryParamMap.get('summaryText'),
         volumeName: queryParamMap.get('volumeName'),
-        articleName: queryParamMap.get('articleName')
+        articleName: queryParamMap.get('articleName'),
+        year: year
       } as SearchArticlesRequest;
 
       this.articleService.search(query)

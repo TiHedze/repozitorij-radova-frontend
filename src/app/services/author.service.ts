@@ -53,10 +53,6 @@ export class AuthorService {
    }
    
   public getAuthorsByQuery(query: string): Observable<Author[]> {
-    return of( [
-      {firstName: 'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdadasdasdasds', lastName:'asd', id: '1'} as Author,
-      {firstName: 'sdf', lastName:'sdf', id: '2'} as Author,
-      {firstName: 'dfg', lastName:'dfg', id: '3'} as Author,
-    ].filter(author => `${author.firstName} ${author.lastName}`.toLowerCase().includes(query)));
-   }
+    return this.httpClient.get<Author[]>(this.url + `/query?authorName=${query}`);
+  }
 }
